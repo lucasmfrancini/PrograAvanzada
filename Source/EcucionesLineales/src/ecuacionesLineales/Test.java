@@ -16,9 +16,17 @@ public class Test {
 		v3.setComponentes(componentes3);
 //		System.out.println(v1.equals(v2));
 //		System.out.println(v1.equals(v3));
-		MatrizMath mat1 = new MatrizMath("d:\\matriz.in");
-		MatrizMath mat2 = new MatrizMath("d:\\matriz2.in");
-		System.out.println(mat1.equals(mat2));
+//		MatrizMath mat1 = new MatrizMath("matriz.in");
+//		MatrizMath mat2 = new MatrizMath("matriz2.in");
+		MatrizMath mat4 = new MatrizMath("matriz4.in");
+		//System.out.println(mat1.toString());
+		System.out.println(mat4.toString());
+		System.out.println("**************");
+		mat4.llevarACeroPosicionesPorDebajo(mat4.getComponentes(),1);
+		System.out.println(mat4.toString());
+		
+		
+		
 	}
 
 }
