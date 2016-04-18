@@ -104,6 +104,114 @@ public class MatrizMath {
 		return true;
 	}
 	
+	public void productoDeUnaFila(float[][] matriz, int fila, float factor){
+		try {
+			if (fila < 0 || fila >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+fila);
+			for(int i=0;i<this.dimensionCol;i++){
+				matriz[fila][i] *= (factor);
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				}
+		}
+	public void intercambiarFilas(float[][] matriz, int filaOrigen, int filaDestino){
+		try {
+			if (filaOrigen < 0 || filaOrigen >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaOrigen);
+			if (filaDestino < 0 || filaDestino >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaDestino);
+			
+			float auxiliar;
+			
+			for(int i=0;i<this.dimensionCol;i++){
+				auxiliar = matriz[filaOrigen][i];
+				matriz[filaOrigen][i]=matriz[filaDestino][i];
+				matriz[filaDestino][i]=auxiliar;
+				
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				}
+		}
+
+	public void sumarFilas(float[][] matriz,int filaOrigen,int filaDestino){
+		try {
+			if (filaOrigen < 0 || filaOrigen >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaOrigen);
+			if (filaDestino < 0 || filaDestino >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaDestino);
+			
+			for(int i=0;i<this.dimensionCol;i++){
+				
+				matriz[filaDestino][i]+=matriz[filaOrigen][i];
+								
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				}
+		}
+	
+	public void intercambiarConRenglonNoNuloPorDebajo(float matriz[][], int filaColumna){
+		try {
+			if (filaColumna < 0 || filaColumna >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaColumna);
+			if (filaColumna < 0 || filaColumna >= this.dimensionCol)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaColumna);
+			
+			for(int i=filaColumna+1;i<this.dimensionFil;i++){
+				
+				if (matriz[i][filaColumna]!=0) {
+					this.intercambiarFilas(matriz, filaColumna, i);
+					i=this.dimensionFil;
+				} 
+								
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				}
+		}
+	
+	public void intercambiarConRenglonNoNuloPorArriba(float matriz[][], int filaColumna){
+		try {
+			if (filaColumna < 0 || filaColumna >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaColumna);
+			if (filaColumna < 0 || filaColumna >= this.dimensionCol)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaColumna);
+			
+			for(int i=filaColumna-1;i >=0;i--){
+				
+				if (matriz[i][filaColumna]!=0) {
+					this.intercambiarFilas(matriz, filaColumna, i);
+					i= -1 ;
+				} 
+								
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				}
+		}
+	public void llevarACeroPosicionesPorDebajo(float[][] matriz ,int filaColumna){
+		try {
+			if (filaColumna < 0 || filaColumna >= this.dimensionFil)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaColumna);
+			if (filaColumna < 0 || filaColumna >= this.dimensionCol)
+				throw new ArrayIndexOutOfBoundsException(" Error Valor Indice de Matriz: "+filaColumna);
+			
+			for(int i=filaColumna+1;i < this.dimensionFil ;i++){
+				
+				if (matriz[i][filaColumna]!=0) {
+					this.productoDeUnaFila(matriz, i, 1/(matriz[i][filaColumna]));
+					this.productoDeUnaFila(matriz, i, (-1)*(matriz[filaColumna][filaColumna]));
+					this.sumarFilas(matriz, filaColumna, i);
+				} 
+								
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				}
+	}
 	
 	
 }
+	
