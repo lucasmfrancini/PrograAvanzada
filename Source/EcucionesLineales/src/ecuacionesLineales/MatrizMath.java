@@ -69,7 +69,7 @@ public class MatrizMath {
 		return componentes;
 	}
 	
-	public String  ToString(){
+	public String  toString(){
 		String resultado="";
 		for(int i=0;i<this.getDimensionFil();i++){
 			for(int j=0;j<this.getDimensionCol();j++){
