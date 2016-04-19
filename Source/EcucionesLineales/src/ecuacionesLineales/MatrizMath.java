@@ -152,6 +152,52 @@ public class MatrizMath {
 				}
 		}
 	
+	
+	public MatrizMath Producto(float nro){
+		
+		float[][] componentes = new float[this.getDimensionFil()][this.getDimensionCol()];
+		MatrizMath matriz = new MatrizMath(this.getDimensionFil(),this.getDimensionCol());
+		for (int i = 0; i < this.getDimensionFil(); i++) {
+			for (int j = 0; j < this.getDimensionCol(); j++) {
+				componentes[i][j] = this.getComponentes()[i][j]*nro;
+				
+			}
+		
+		}
+		matriz.setComponentes(componentes);
+		return matriz;
+		
+	}
+	
+	public MatrizMath Producto(MatrizMath mat){
+		MatrizMath matriz = null;
+		
+		try{
+			if(this.getDimensionCol()!=mat.getDimensionFil())
+				throw new DistDimException(" Distinta Dimension ");
+			matriz = new MatrizMath(this.getDimensionFil(), mat.getDimensionCol());
+			float[][] componentes = new float[this.getDimensionFil()][mat.getDimensionCol()];
+			
+			for (int i = 0; i < this.getDimensionFil(); i++) {
+				for (int j = 0; j < mat.getDimensionCol(); j++) {
+					for (int k = 0; k < this.getDimensionCol(); k++) {
+						componentes[i][j]+=this.getComponentes()[i][k]+mat.getComponentes()[k][j];
+					}
+					
+				}
+				
+			}
+			matriz.setComponentes(componentes);
+			return matriz;
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return matriz;
+				
+	}
+	
+	
 	public void intercambiarConRenglonNoNuloPorDebajo(float matriz[][], int filaColumna){
 		try {
 			if (filaColumna < 0 || filaColumna >= this.dimensionFil)
