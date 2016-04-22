@@ -258,6 +258,29 @@ public class MatrizMath {
 				}
 	}
 	
-	
+		public float[][] adjuntaDerechaIdentidad()
+	{
+		float[][] matriz = new float[this.getDimensionFil()][this.getDimensionCol()*2];
+		
+		for (int fila = 0; fila < matriz.length; fila++) {
+			for (int col = 0; col < matriz[0].length; col++) {
+				if(col>=this.getDimensionCol())
+				{
+					if ((col-fila)==this.getDimensionCol()) {
+						matriz[fila][col]=1;
+					}
+					else {
+						matriz[fila][col]=0;
+					}
+				}	
+				else {
+					matriz[fila][col]=this.getComponentes()[fila][col];	
+				}
+			}
+		}
+		return matriz;
+	}
+		
+
 }
 	
